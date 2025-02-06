@@ -34,6 +34,7 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     username: str | None = None
 
+
 class FilterPage(BaseModel):
     offset: int = 0
     limit: int = 100

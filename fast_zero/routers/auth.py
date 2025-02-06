@@ -1,4 +1,5 @@
 from http import HTTPStatus
+from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
@@ -10,12 +11,11 @@ from fast_zero.models import User
 from fast_zero.schemas import Token
 from fast_zero.security import create_access_token, verify_password
 
-from typing import Annotated
-
 router = APIRouter(prefix='/auth', tags=['auth'])
 
 OAuth2Form = Annotated[OAuth2PasswordRequestForm, Depends()]
 Session = Annotated[Session, Depends(get_session)]
+
 
 @router.post('/token', response_model=Token)
 def login_for_access_token(
